@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: RollStory Backend
+
+paths:
+  /ping:
+    get:
+      summary: Ping команда для проверки сервиса
+      tags:
+        - Test
+      parameters:
+        - $ref: "#/components/parameters/X-User-Id"
+      responses:
+        "200":
+          description: Ответ о работоспособности сервиса
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+components:
+  responses:
+    InternalServerError:
+      description: Непредвиденная внутренняя ошибка сервера.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+  parameters:
+    X-User-Id:
+      in: header
+      name: X-User-Id
+      description: Идентификатор пользователя (UUID)
+      required: false
+      schema:
+        $ref: "#/components/schemas/UUID"
+
+  schemas:
+    UUID:
+      type: string
+      format: uuid
+      pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+
+    # Specific HTTP Responses
+    PingResponse:
+      type: object
+      description: Успешное сообщение "Pong"
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Поле с сообщением
+
+    ErrorResponse:
+      type: object
+      required: [ error ]
+      properties:
+        error:
+          type: string
