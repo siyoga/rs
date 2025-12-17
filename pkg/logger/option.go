@@ -27,7 +27,7 @@ func newOptions(opts ...Option) *options {
 		app:     envString(envAppName, ""),
 		level:   envString(envLevel, defaultLevel),
 		enabled: envBool(envEnabled, true),
-		format:  envString(envOutput, defaultFormat),
+		format:  envString(envFormat, defaultFormat),
 	}
 
 	for _, o := range opts {

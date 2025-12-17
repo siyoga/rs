@@ -1,9 +1,9 @@
 package init
 
 import (
+	"github.com/siyoga/rollstory/internal/api"
+	rpcPing "github.com/siyoga/rollstory/internal/api/ping"
 	appPing "github.com/siyoga/rollstory/internal/app/ping"
-	"github.com/siyoga/rollstory/internal/rpc"
-	rpcPing "github.com/siyoga/rollstory/internal/rpc/ping"
 	"github.com/siyoga/rollstory/pkg/container"
 )
 

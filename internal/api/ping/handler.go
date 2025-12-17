@@ -2,7 +2,6 @@ package ping
 
 import (
 	"context"
-
 	"github.com/siyoga/rollstory/internal/generated/api"
 	"github.com/siyoga/rollstory/pkg/logger"
 )
@@ -31,11 +30,6 @@ func NewHandler(
 // GetPing handles the GET /ping endpoint
 // This is the network layer - it only transforms data and delegates to service layer
 func (h *Handler) GetPing(ctx context.Context, request api.GetPingRequestObject) (api.GetPingResponseObject, error) {
-	// Optional: log user ID from header if present
-	if request.Params.XUserId != nil {
-		h.log.WithField("user_id", request.Params.XUserId.String()).Debug(ctx, "Ping request from user")
-	}
-
 	// Delegate to app layer (business logic)
 	response, err := h.pingHandler.Handle(ctx)
 	if err != nil {

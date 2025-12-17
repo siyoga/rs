@@ -1,0 +1,45 @@
+services:
+  database:
+    image: postgres:16-alpine
+    container_name: rollstory-db
+    restart: unless-stopped
+    networks:
+      - app-network
+    ports:
+      - "${PG_PORT:-5432}:5432"
+    volumes:
+      - db-storage:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${PG_USER:-postgres}
+      POSTGRES_PASSWORD: ${PG_PASSWORD:-postgres}
+      POSTGRES_DB: ${PG_DBNAME:-rollstory}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER:-postgres} -d ${PG_DBNAME:-rollstory}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rollstory-server
+    restart: unless-stopped
+    networks:
+      - app-network
+    ports:
+      - "${PORT:-8080}:8080"
+    env_file:
+      - .env
+    environment:
+      PG_HOST: database
+    depends_on:
+      database:
+        condition: service_healthy
+
+volumes:
+  db-storage:
+
+networks:
+  app-network:
+    driver: bridge

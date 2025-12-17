@@ -166,12 +166,6 @@ func (d *zapDriver) logger(ctx context.Context) *zap.SugaredLogger {
 	}
 	put()
 
-	tags, put := tagsPooled(ctx)
-	for k, v := range tags {
-		loggerFields = append(loggerFields, zap.Any(k, v))
-	}
-	put()
-
 	return d.zap.With(loggerFields...).Sugar()
 }
 

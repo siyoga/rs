@@ -3,6 +3,7 @@ package postgres
 import (
 	"fmt"
 	"github.com/jackc/pgx/v4"
+	"github.com/jmoiron/sqlx"
 	"strings"
 )
 
@@ -25,7 +26,7 @@ const (
 )
 
 type Connection struct {
-	sqlx
+	sqlx.DB
 }
 
 type Options struct {

@@ -14,6 +14,7 @@ const (
 	envEnvironment   = "ENVIRONMENT"
 	envEnabled       = "LOGGER_ENABLED"
 	envOutput        = "LOGGER_OUTPUT"
+	envFormat        = "LOGGER_FORMAT"
 	envLevel         = "LOGGER_LEVEL"
 	envIncludeFields = "LOGGER_INCLUDE_FIELDS"
 	envExcludeFields = "LOGGER_EXCLUDE_FIELDS"

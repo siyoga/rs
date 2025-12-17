@@ -2,7 +2,6 @@ package api
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/siyoga/rollstory/internal/generated/api"
 	"github.com/siyoga/rollstory/pkg/logger"

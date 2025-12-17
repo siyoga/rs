@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Build artifacts
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test files
+*_test.go
+*.test
+coverage.out
+
+# Documentation
+*.md
+!go.md
+bruno/
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Local config
+.env
+.env.*
+*.local

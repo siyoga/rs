@@ -10,7 +10,7 @@ import (
 
 	"github.com/siyoga/rollstory/internal/api/ping"
 	"github.com/siyoga/rollstory/internal/generated/api"
-	"github.com/siyoga/rollstory/internal/init"
+	bootstrap "github.com/siyoga/rollstory/internal/init"
 	"github.com/siyoga/rollstory/pkg/http/listener"
 	"github.com/siyoga/rollstory/pkg/http/router"
 	"github.com/siyoga/rollstory/pkg/logger"
@@ -36,7 +36,7 @@ func run() (exitCode int) {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
 
-	container := init.NewContainer()
+	container := bootstrap.NewContainer()
 	rt := router.NewRouter(
 		log,
 		router.DefaultBadRequestErrHandler,
@@ -84,9 +84,9 @@ func run() (exitCode int) {
 
 	ln := listener.New(
 		listener.With(log),
-		listener.WithIdleTimeout(time.Duration(listenerIdleTimeout)),
-		listener.WithReadTimeout(time.Duration(listenerReadTimeout)),
-		listener.WithWriteTimeout(time.Duration(listenerWriteTimeout)),
+		listener.WithIdleTimeout(time.Duration(listenerIdleTimeout)*time.Second),
+		listener.WithReadTimeout(time.Duration(listenerReadTimeout)*time.Second),
+		listener.WithWriteTimeout(time.Duration(listenerWriteTimeout)*time.Second),
 	)
 
 	log.Info(ctx, fmt.Sprintf("listening on port %d", port))

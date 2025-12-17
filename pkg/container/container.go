@@ -80,7 +80,7 @@ func (c *DigContainer) Invoke(fn any, opts ...dig.InvokeOption) error {
 }
 
 func (c *DigContainer) build() error {
-	if c.di == nil {
+	if c.di != nil {
 		return nil
 	}
 
