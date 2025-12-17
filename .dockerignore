@@ -4,7 +4,6 @@
 
 # IDE
 .idea
-.vscode
 *.swp
 *.swo
 
@@ -24,7 +23,6 @@ coverage.out
 # Documentation
 *.md
 !go.md
-bruno/
 
 # Docker
 Dockerfile*
