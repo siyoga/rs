@@ -1,1 +1,28 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test
+*.test
+coverage.out
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
 CLAUDE.md
